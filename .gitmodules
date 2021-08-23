@@ -1,4 +1,4 @@
 [submodule "paddy"]
 	path = paddy
 	url = https://github.com/chopralab/paddy
-	branch = fd589ee
+	branch = paddy_1_20_2020_test_branch 
