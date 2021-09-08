@@ -1,3 +1,5 @@
+import sys
+sys.path.append('paddy/')
 import paddy
 from paddy import Paddy_Parameter
 from paddy.Paddy_Parameter import *

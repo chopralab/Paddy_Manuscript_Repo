@@ -1,6 +1,7 @@
+import sys
 import math
-from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 import random
+sys.path.append('paddy/')
 import paddy
 import numpy as np 
 import time

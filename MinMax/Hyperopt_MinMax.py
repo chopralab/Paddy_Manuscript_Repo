@@ -1,7 +1,6 @@
 import math
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 import random
-import paddy
 import numpy as np
 import time
 

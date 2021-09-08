@@ -33,7 +33,7 @@ from keras.models import model_from_json
 import os
 from tensorflow import set_random_seed
 import sys
-sys.path.append('')
+sys.path.append('paddy/')
 import paddy
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 from tensorflow.python.client import device_lib
@@ -45,7 +45,7 @@ seed = 7
 numpy.random.seed(seed)
 set_random_seed(2)
 random.seed(1)
-dataframe = pd.read_csv("/storage/armen_beck/d4990.csv", header=None)
+dataframe = pd.read_csv("MLP_Hyperparameter_Optimization/d4990.csv", header=None)
 dataset = dataframe.values
 X = dataset[:,1:].astype(int)
 Y = dataset[:,0]

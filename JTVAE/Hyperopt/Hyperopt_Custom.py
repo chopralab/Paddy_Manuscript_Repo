@@ -4,12 +4,12 @@ import math, random, sys
 import argparse
 from fast_jtnn import *
 import rdkit
-import paddy
 from rdkit.Chem import AllChem as Chem
 import hyperopt
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 import time
 import numpy as np
+sys.path.append('icml18-jtnn-master/fast_molvae/')
 import sascorer
 import networkx as nx
 from rdkit.Chem import rdmolops
