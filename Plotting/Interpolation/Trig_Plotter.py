@@ -10,7 +10,7 @@ def rmse(inputv):
 		temp.append((ave-i)**2)
 	return((sum(temp)/100)**.5)
 
-paddy_trig = np.load('paddy_trig.npy')
+paddy_trig = np.load('Paddy_Interp.npy')
 
 pe = [] 
 pt =[]
@@ -18,7 +18,7 @@ for i in paddy_trig:
 	pe.append(-i[1])
 	pt.append(i[2])
 
-hp_trig = np.load('hp_trig.npy')
+hp_trig = np.load('Hyperopt_Interp.npy')
 
 he = [] 
 ht =[]
@@ -28,7 +28,7 @@ for i in hp_trig:
 
 
 
-random_trig = np.load('random_trig.npy')
+random_trig = np.load('Random_Interp.npy')
 
 re = [] 
 rt =[]

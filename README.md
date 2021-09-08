@@ -15,11 +15,11 @@ Note that Conda YML files are provided in experiment folders to assist with pack
 
 Paddy (v1.0) and the rest of this repository can be donwloaded via the commands:
 
-'''bash
+```bash
 git clone https://github.com/chopralab/Paddy_Manuscript_Repo
 git submodule init
 git submodule update
-'''
+```
 
 ## Experiments
 ### MinMax
