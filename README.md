@@ -9,7 +9,9 @@ This repo contains both the source code for Paddy (v1.0) and experiments used fo
 2) Scipy==v1.1.0
 3) Matplotlib==2.10
 
-Note that Conda YML files are provided in experiment folders to assist with package management.
+Note that Conda .txt requirement files are provided as explicit package versions for CentOS Linux, Version 7 (Core).
+
+If using a ????
 
 ## Downloading Paddy
 
@@ -29,7 +31,11 @@ git submodule update
 
 ### MLP Hyperparameter Optimization
 
-Should be run in 'Paddy_MLP' directory in isolation mode 
+Should be run in 'Paddy_MLP' directory in isolation mode using the comand:
+
+```bash
+python -I MLP_Hyperparameter_Optimization/Paddy_Solv.py > YourFileName.txt 
+```
 
 ## Packages (see YML)
 
