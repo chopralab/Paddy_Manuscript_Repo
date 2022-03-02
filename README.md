@@ -2,16 +2,17 @@
 
 Paddy is a Python package developed as an extension of the Paddy Field ALgorithm (PFA), a genetic global optimization algorithm proposed by Premaratne et al. (2009).  This work contains the first showcasings of the modifications and extended formulations of the PFA, developed by members of Chopra Lab.  Experiments consist of numeric optimization, hyperparameter optimization of a multilayer perceptron, and targeted molecule generation via the junction tree variational autoencoder developed by Jaakkola et al. (2019).
 
-This repo contains both the source code for Paddy (v1.0) and experiments used for benchmarking, and further modifications and developments are anticipated.
-
-## Required Packages for Paddy (v1.0)
-1) Numpy==1.15.1
-2) Scipy==v1.1.0
-3) Matplotlib==2.10
+This repo contains both the source code for Paddy (v1.0) and experiments used for benchmarking.
 
 ## Use of Conda and Dependencies
 
-Note that Conda .txt requirement files are provided as explicit package versions tested on a CentOS Linux, Version 7 (Core) machine, while using Conda 4.6.11 build version 3.17.9.  These requirement files should work for linux-64 distributions running Conda, though .  Additional information regarding use of Conda can be found [here](https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf). 
+Note that Conda environments were tested on a CentOS Linux, Version 7 (Core) machine, while using Conda 4.6.11 build version 3.17.9.  These requirement files should work for linux-64 distributions running Conda.  Additional information regarding use of Conda can be found [here](https://docs.conda.io/projects/conda/en/latest/_downloads/843d9e0198f2a193a3484886fa28163c/conda-cheatsheet.pdf). 
+
+Conda environments can be created by the command:
+```bash
+conda env create -f name.yml
+```
+Where name is the name of the requirement file.
 
 ## Downloading Paddy
 
