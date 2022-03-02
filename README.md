@@ -12,7 +12,7 @@ Conda environments can be created by the command:
 ```bash
 conda env create -f name.yml
 ```
-Where name is the name of the requirement file.
+Where 'name' is the name of the requirement file.
 
 ## Downloading Paddy
 
@@ -25,28 +25,27 @@ git submodule update
 ```
 
 ## Experiments
+
+All pathing has been done such that scripts should be run from the 'Paddy_Manuscript_Repo'.
+
 ### MinMax
 
+Should be run using a conda env made from 'paddy.yml'.
 
 ### Interpolation
 
+Should be run using a conda env made from 'paddy.yml'.
+
 ### MLP Hyperparameter Optimization
 
-Should be run in 'Paddy_MLP' directory in isolation mode using the comand:
+Should be run using a conda env made from 'MLP.yml' in isolation mode using the comand:
 
 ```bash
-python -I MLP_Hyperparameter_Optimization/Paddy_Solv.py > YourFileName.txt 
+python -I MLP_Hyperparameter_Optimization/Paddy_Solv.py > YourPath/YourFileName.txt 
 ```
-
-## Packages (see YML)
-
-3) Numpy==1.15.1
-4) Pandas==0.25.1
-5) Keras==2.2.4
-6) Sklearn==0.20.0
 
 ### JTVAE
 
+Should be run using a conda env made from 'JTVAE.yml'.
 
-#this is mostly a place holder for the initial commit#
-
+ 
