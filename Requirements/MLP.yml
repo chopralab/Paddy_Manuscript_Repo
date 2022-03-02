@@ -1,4 +1,4 @@
-name: paddy_dev
+name: MLP
 channels:
   - rdkit
   - conda-forge
@@ -81,7 +81,7 @@ dependencies:
   - libsodium=1.0.16=h1bed415_0
   - libstdcxx-ng=9.1.0=hdf63c60_0
   - libtiff=4.0.10=h2733197_2
-  - libtorch=0.1.12=nomkl_0
+#  - libtorch=0.1.12=nomkl_0
   - libuuid=1.0.3=h1bed415_2
   - libxcb=1.13=h1bed415_1
   - libxml2=2.9.9=hea5a465_1
@@ -133,7 +133,7 @@ dependencies:
   - pysocks=1.7.0=py36_0
   - python=3.6.3=h6c0c0dc_5
   - python-dateutil=2.8.0=py36_0
-  - pytorch=0.1.12=py36_nomkl_0
+ # - pytorch=0.1.12=py36_nomkl_0
   - pytz=2019.2=py_0
   - pyyaml=5.1.2=py36h7b6447c_0
   - pyzmq=18.1.0=py36he6710b0_0
@@ -170,7 +170,7 @@ dependencies:
   - termcolor=1.1.0=py36_1
   - testpath=0.4.2=py36_0
   - tk=8.6.8=hbc83047_0
-  - torchvision=0.1.8=py36_0
+#  - torchvision=0.1.8=py36_0
   - tornado=6.0.3=py36h7b6447c_0
   - tqdm=4.40.0=py_0
   - traitlets=4.3.2=py36_0
@@ -195,5 +195,5 @@ dependencies:
     - pillow==8.4.0
     - sqlalchemy==1.3.12
     - watchdog==0.9.0
-prefix: /storage/armen_beck/bin/anaconda3/envs/paddy_dev
+#prefix: /storage/armen_beck/bin/anaconda3/envs/paddy_dev
 

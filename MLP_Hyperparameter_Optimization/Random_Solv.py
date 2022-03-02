@@ -43,7 +43,7 @@ print(device_lib.list_local_devices())
 10.1.168-0 --> 9.0-h13b8566_0
 
 '''
-dataframe = pd.read_csv("/storage/armen_beck/d4990.csv", header=None)
+dataframe = pd.read_csv("MLP_Hyperparameter_Optimization/d4990.csv", header=None)
 dataset = dataframe.values
 X = dataset[:,1:].astype(int)
 Y = dataset[:,0]
