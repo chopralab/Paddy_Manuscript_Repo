@@ -2,12 +2,15 @@ import torch
 import torch.nn as nn
 import math, random, sys
 import argparse
+sys.path.append('icml18-jtnn-master')
 from fast_jtnn import *
 import rdkit
+sys.path.append('paddy/')
 import paddy
 from rdkit.Chem import AllChem as Chem
 import time
 import numpy as np
+sys.path.append('icml18-jtnn-master/bo')
 import sascorer
 import networkx as nx
 from rdkit.Chem import rdmolops
@@ -15,7 +18,7 @@ from rdkit.Chem import MolFromSmiles, MolToSmiles
 from rdkit.Chem import Descriptors
 import os
 from multiprocessing import Process
-import sys
+
 
 random.seed(2)
 seed = 8

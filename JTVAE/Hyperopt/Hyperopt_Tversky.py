@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import math, random, sys
 import argparse
+sys.path.append('icml18-jtnn-master')
 from fast_jtnn import *
 import rdkit
 import paddy
@@ -10,6 +11,7 @@ import hyperopt
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 import time
 import numpy as np
+sys.path.append('icml18-jtnn-master/bo')
 import sascorer
 import networkx as nx
 from rdkit.Chem import rdmolops
@@ -25,11 +27,11 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 lg = rdkit.RDLogger.logger() 
 lg.setLevel(rdkit.RDLogger.CRITICAL)
    
-vocab = [x.strip("\r\n ") for x in open('vocab.txt')] 
+vocab = [x.strip("\r\n ") for x in open('icml18-jtnn-master/fast_molvae/vocab.txt')] 
 vocab = Vocab(vocab)
 
 model = JTNNVAE(vocab, 450, 56, 20, 3)
-model.load_state_dict(torch.load('moses-h450z56/model.iter-400000'))
+model.load_state_dict(torch.load('icml18-jtnn-master/fast_molvae/moses-h450z56/model.iter-400000'))
 model = model.cuda()
 
 

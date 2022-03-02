@@ -2,12 +2,15 @@ import torch
 import torch.nn as nn
 import math, random, sys
 import argparse
+sys.path.append('icml18-jtnn-master')
 from fast_jtnn import *
 import rdkit
+sys.path.append('paddy/')
 import paddy
 from rdkit.Chem import AllChem as Chem
 import time
 import numpy as np
+sys.path.append('icml18-jtnn-master/bo')
 import sascorer
 import networkx as nx
 from rdkit.Chem import rdmolops
@@ -15,7 +18,7 @@ from rdkit.Chem import MolFromSmiles, MolToSmiles
 from rdkit.Chem import Descriptors
 import os
 from multiprocessing import Process
-import sys
+
 
 random.seed(2)
 seed = 8
@@ -25,11 +28,11 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 lg = rdkit.RDLogger.logger() 
 lg.setLevel(rdkit.RDLogger.CRITICAL)
    
-vocab = [x.strip("\r\n ") for x in open('vocab.txt')] 
+vocab = [x.strip("\r\n ") for x in open('icml18-jtnn-master/fast_molvae/vocab.txt')] 
 vocab = Vocab(vocab)
 
 model = JTNNVAE(vocab, 450, 56, 20, 3)
-model.load_state_dict(torch.load('moses-h450z56/model.iter-400000'))
+model.load_state_dict(torch.load('icml18-jtnn-master/fast_molvae/moses-h450z56/model.iter-400000'))
 model = model.cuda()
 
 space = paddy.Default_Numerics.Polynomial(length=56, scope=1, gausian_type='scaled',normalization=True, limits=[-1,1])
