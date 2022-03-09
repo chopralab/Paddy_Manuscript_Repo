@@ -12,7 +12,7 @@ Conda environments can be created by the command:
 ```bash
 conda env create -f name.yml
 ```
-Where 'name' is the name of the requirement file.
+Where 'name' is the name of the requirement file.  All yml's are in the "Requirements" folder.
 
 ## Downloading Paddy
 
