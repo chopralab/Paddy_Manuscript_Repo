@@ -26,26 +26,37 @@ git submodule update
 
 ## Experiments
 
-All pathing has been done such that scripts should be run from the 'Paddy_Manuscript_Repo'.
+All pathing has been done such that scripts should be run from the 'Paddy_Manuscript_Repo' root directory.
 
 ### MinMax
 
-Should be run using a conda env made from 'paddy.yml'.
+Should be run using a conda env made from 'paddy.yml' using the commmand:  
 
+```bash
+python MinMax/Paddy_MinMax.py
+```
 ### Interpolation
 
-Should be run using a conda env made from 'paddy.yml'.
+Should be run using a conda env made from 'paddy.yml' using the command:
+
+```bash
+python Interpolation/Paddy_Interp.py
+```
 
 ### MLP Hyperparameter Optimization
 
-Should be run using a conda env made from 'MLP.yml' in isolation mode using the comand:
+Should be run using a conda env made from 'MLP.yml' in isolation mode using the command:
 
 ```bash
 python -I MLP_Hyperparameter_Optimization/Paddy_Solv.py > YourPath/YourFileName.txt 
 ```
 
+
 ### JTVAE
 
-Should be run using a conda env made from 'JTVAE.yml'.
+Should be run using a conda env made from 'JTVAE.yml'.  Directories for Hyperopt, Paddy, and Random are named as such, with an example command with pathing being:
 
- 
+```bash
+python JTVAE/Paddy/Paddy_Tversky_Gen.py
+```
+
