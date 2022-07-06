@@ -14,7 +14,7 @@ f = open("Hyperopt_Tversky.txt","r")
 
 fl = file_len(file_name)
 
-f = open("hyperopt_vae_T_3500_timed.txt","r")
+f = open("Hyperopt_Tversky.txt","r")
 hp_T = []
 hp_b = 0
 c = 0 
@@ -111,7 +111,7 @@ while c < 3500:
 
 
 file_name = 'Paddy_Custom_Pop.txt'
-f = open("Paddyt_Custom_Pop.txt","r")
+f = open("Paddy_Custom_Pop.txt","r")
 
 fl = file_len(file_name)
 

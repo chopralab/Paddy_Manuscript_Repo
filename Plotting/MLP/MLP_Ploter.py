@@ -191,8 +191,8 @@ plt.yticks(fontsize=13)
 plt.xticks(fontsize=13)
 plt.legend(loc='lower left',fontsize=12)
 plt.title('Hyperparameter Optimization',fontsize=22)
-plt.tight_layout()
-#plt.savefig(filename='hyperparams.svg',dpi=600)
+#plt.tight_layout()
+plt.savefig(fname='hyperparams.svg',dpi=600)
 plt.show()
 
 
