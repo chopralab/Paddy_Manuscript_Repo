@@ -21,8 +21,8 @@ def function_2(input):
 
 i = ['generational', 'scaled', 50, 100, 5, False]
 
-y_param = paddy.PaddyParameter(param_range=[0,1,.01],param_type='continuous',limits=[0,1,.1], gaussian=i[1],normalization = i[5])
-x_param = paddy.PaddyParameter(param_range=[0,1,.01],param_type='continuous',limits=[0,1,.1], gaussian=i[1],normalization = i[5])
+y_param = paddy.PaddyParameter(param_range=[0,1,.01],param_type='continuous',limits=[0,1,.1], gaussian='scaled',normalization = False)
+x_param = paddy.PaddyParameter(param_range=[0,1,.01],param_type='continuous',limits=[0,1,.1], gaussian='scaled',normalization = False)
 class space(object):
         def __init__(self):
                 self.xp = x_param
@@ -34,8 +34,8 @@ g = 0
 r_list = []
 while c<100:
     runner = paddy.PFARunner(space=test_space, eval_func=function_2,
-                            paddy_type=i[0], rand_seed_number=i[2],
-                            yt=i[2],Qmax=i[3],r=.02,iterations =i[4])
+                            paddy_type='generational', rand_seed_number=50,
+                            yt=50,Qmax=100,r=.02,iterations=5)
     s = time.time()
     runner.run_paddy()
     e = time.time() - s
@@ -43,6 +43,8 @@ while c<100:
         g +=1
     print(g,c)
     f=(max(runner.seed_fitness))
+    print(len(runner.seed_fitness))
+    print(f)
     p=runner.seed_params[np.argmax(runner.seed_fitness)]
     r_list.append([p,f,e])
     c += 1
@@ -50,9 +52,11 @@ while c<100:
 
 p1 = [] 
 p2 =[]
+p3 = []
 for i in r_list:
-        p1.append(i[1])
-        p2.append(i[2])
+        p1.append(i[0])
+        p2.append(i[1])
+        p3.append(i[2])
 
 np.save("Paddy_MinMax",r_list)
 

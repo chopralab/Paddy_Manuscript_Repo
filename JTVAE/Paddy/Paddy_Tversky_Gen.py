@@ -61,9 +61,9 @@ def run_func_1(input):
 	return score
 
 
-runner = paddy.PFARunner(space=space, eval_func=run_func_1, rand_seed_number = 250, yt = 15, paddy_type='population', Qmax=25, r=5, iterations=30)
+runner = paddy.PFARunner(space=space, eval_func=run_func_1, rand_seed_number = 250, yt = 15, paddy_type='generational', Qmax=25, r=5, iterations=30)
 start = time.time()
 runner.run_paddy()
 end = time.time()
-runner.save_paddy('Pady_Tversky_Gen')
+runner.save_paddy('Paddy_Tversky_Gen')
 print("run time:"+str(end-start))

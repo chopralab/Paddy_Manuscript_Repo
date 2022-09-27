@@ -17,8 +17,6 @@ from rdkit.Chem import rdmolops
 from rdkit.Chem import MolFromSmiles, MolToSmiles
 from rdkit.Chem import Descriptors
 import os
-from multiprocessing import Process
-
 
 random.seed(2)
 seed = 8
@@ -28,11 +26,11 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 lg = rdkit.RDLogger.logger() 
 lg.setLevel(rdkit.RDLogger.CRITICAL)
    
-vocab = [x.strip("\r\n ") for x in open('vocab.txt')] 
+vocab = [x.strip("\r\n ") for x in open('icml18-jtnn-master/fast_molvae/vocab.txt')] 
 vocab = Vocab(vocab)
 
 model = JTNNVAE(vocab, 450, 56, 20, 3)
-model.load_state_dict(torch.load('moses-h450z56/model.iter-400000'))
+model.load_state_dict(torch.load('icml18-jtnn-master/fast_molvae/moses-h450z56/model.iter-400000'))
 model = model.cuda()
 
 space = paddy.Default_Numerics.Polynomial(length=56, scope=1, gausian_type='scaled',normalization=True, limits=[-1,1])
@@ -70,18 +68,6 @@ ar2= []
 spooky = []
 ar1 = torch.randn(1, 28).cuda()
 ar2 = torch.randn(1, 28).cuda()
-
-def try_decode(a1,a2):
-	global spooky
-	ar1 = a1
-	ar2 = a2
-	global model
-	output_b = model.decode(ar1,ar2,False)
-	spooky = output_b
-
-
-
-
 
 def run_func_1(input):
 	input = input

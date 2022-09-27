@@ -1,4 +1,8 @@
 import numpy as np
+import matplotlib
+matplotlib.rcParams['axes.spines.right'] = False
+matplotlib.rcParams['axes.spines.top'] = False
+matplotlib.rcParams['axes.linewidth'] = 1.5
 import matplotlib.pyplot as plt
 
 
@@ -191,9 +195,9 @@ plt.yticks(fontsize=13)
 plt.xticks(fontsize=13)
 plt.legend(loc='lower left',fontsize=12)
 plt.title('Hyperparameter Optimization',fontsize=22)
-#plt.tight_layout()
+plt.tight_layout()
 plt.savefig(fname='hyperparams.svg',dpi=600)
-plt.show()
+#plt.show()
 
 
 def rmse(inputv):
@@ -205,3 +209,23 @@ def rmse(inputv):
 
 
 
+print("Max MSE paddy", max(best_list))
+print("Min MSE paddy", min(best_list))
+print("Avg MSE paddy", sum(best_list)/100)
+print("RMSE MSE paddy", rmse(best_list))
+print("Avg RT paddy", sum(tl)/100)
+print("RMSE RT paddy", rmse(tl))
+
+print("Max MSE hp", max(f1))
+print("Min MSE hp", min(f1))
+print("Avg MSE hp", sum(f1)/100)
+print("RMSE MSE hp", rmse(f1))
+print("Avg RT hp", sum(rt)/100)
+print("RMSE RT hp", rmse(rt))
+
+print("Max MSE rand", max(f1_r))
+print("Min MSE rand", min(f1_r))
+print("Avg MSE rand", sum(f1_r)/100)
+print("RMSE MSE rand", rmse(f1_r))
+print("Avg RT rand", sum(rt_r)/100)
+print("RMSE RT rand", rmse(rt_r))

@@ -65,5 +65,5 @@ runner = paddy.PFARunner(space=space, eval_func=run_func_1, rand_seed_number = 2
 start = time.time()
 runner.run_paddy()
 end = time.time()
-runner.save_paddy('Pady_Tversky_Pop')
+runner.save_paddy('Paddy_Tversky_Pop')
 print("run time:"+str(end-start))

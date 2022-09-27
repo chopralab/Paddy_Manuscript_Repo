@@ -7,7 +7,6 @@ import numpy as np
 import math
 
 
-
 def function_2(x,y):
     r1=((x-0.5)**2)+((y-0.5)**2)
     r2=((x-0.6)**2)+((y-0.1)**2)
@@ -30,22 +29,22 @@ for i in Z:
 		c2 += 1
 	c += 1
 
-r_list = np.load('hp_minmax.npy')
+h_list = np.load('Hyperopt_MinMax.npy')
 
 xs=[]
 ys=[]
 zs=[]
-for i in b_list:
+for i in h_list:
 	xs.append(i[0]['x'])
 	ys.append(i[0]['y'])
 	zs.append(-i[1])
 
-r_list = np.load('paddy_minmax.npy')
+p_list = np.load('Paddy_MinMax.npy')
 
 xs2=[]
 ys2=[]
 zs2=[]
-for i in r_list:
+for i in p_list:
 	xs2.append(i[0][0][0])
 	ys2.append(i[0][1][0])
 	zs2.append(i[1])
@@ -65,27 +64,28 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ax.plot_surface(X, Y, Z, cmap=cm.summer)
 pos = ax.scatter(xs,ys,zs,s=5,c='#8ac6d1ff',edgecolors='#1f77b4ff')
-ax.set_zlabel('z',fontsize=18)
+ax.set_zlabel('f(x,y)',fontsize=18)
 ax.set_xlabel('x',fontsize=18)
 ax.set_ylabel('y',fontsize=18)
 ax.zaxis.set_tick_params(labelsize=14,size=15)
 ax.xaxis.set_tick_params(labelsize=15,size=15)
 ax.yaxis.set_tick_params(labelsize=14,size=15)
 ax.set_title('Hyperopt',fontsize=15)
-#plt.savefig(filename='hpf2.svg',dpi=300)
+plt.savefig(fname='hpf2.svg',dpi=300)
 plt.show()
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ax.plot_surface(X, Y, Z, cmap=cm.summer)
 pos = ax.scatter(xs2,ys2,zs2,s=2,c='#8ac6d1ff',edgecolors='#1f77b4ff')
-ax.set_zlabel('z',fontsize=18)
+ax.set_zlabel('f(x,y)',fontsize=18)
 ax.set_xlabel('x',fontsize=18)
 ax.set_ylabel('y',fontsize=18)
 ax.zaxis.set_tick_params(labelsize=14,size=15)
 ax.xaxis.set_tick_params(labelsize=15,size=15)
 ax.yaxis.set_tick_params(labelsize=14,size=15)
 ax.set_title('Paddy',fontsize=15)
-#plt.savefig(filename='paddyf2.svg',dpi=300)
+plt.savefig(fname='paddyf2.svg',dpi=300)
 plt.show()
+
 

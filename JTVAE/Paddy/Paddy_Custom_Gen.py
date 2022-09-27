@@ -17,7 +17,6 @@ from rdkit.Chem import rdmolops
 from rdkit.Chem import MolFromSmiles, MolToSmiles
 from rdkit.Chem import Descriptors
 import os
-from multiprocessing import Process
 
 
 random.seed(2)
@@ -70,17 +69,6 @@ ar2= []
 spooky = []
 ar1 = torch.randn(1, 28).cuda()
 ar2 = torch.randn(1, 28).cuda()
-
-def try_decode(a1,a2):
-	global spooky
-	ar1 = a1
-	ar2 = a2
-	global model
-	output_b = model.decode(ar1,ar2,False)
-	spooky = output_b
-
-
-
 
 
 def run_func_1(input):

@@ -1,5 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.rcParams['axes.spines.right'] = False
+matplotlib.rcParams['axes.spines.top'] = False
+matplotlib.rcParams['axes.linewidth'] = 1.5
 import math
 
 
@@ -47,7 +51,7 @@ plt.xticks(fontsize=13)
 plt.title('Gramacy & Lee Interpolation',fontsize=22)
 plt.legend(loc='lower right',fontsize=12)
 plt.tight_layout()
-#plt.savefig(filename='glruntime.svg',dpi=600)
+plt.savefig(fname='glruntime.svg',dpi=600)
 plt.show()
 
 #best paddy trig
@@ -98,7 +102,7 @@ def trig_inter(seed,x):
 hpbp = hp_trig[np.argmin(hp_trig[:,1]),0] #parameters for the best hyperopt trial
 hy = trig_inter(hpbp,x)
 
-
+plt.figure()
 plt.plot(x,y,c='#808080ff',label='Gramacy & Lee')
 plt.plot(x,hy,c='#8ac6d1ff',label='Hyperopt')
 plt.xlabel('x',fontsize=18)
@@ -108,7 +112,7 @@ plt.xticks(fontsize=13)
 plt.title('Gramacy & Lee Interpolation\n (Hyperopt)',fontsize=22)
 plt.legend(loc='upper right',fontsize=12)
 plt.tight_layout()
-#plt.savefig(filename='glhp.svg',dpi=600)
+plt.savefig(fname='glhp.svg',dpi=600)
 plt.show()
 
 
@@ -139,7 +143,7 @@ def p_trig_inter(seed,x):
 pbp = paddy_trig[np.argmax(paddy_trig[:,1]),0] # parameters for the best paddy trial
 pbp = pbp[:,0]
 py = p_trig_inter(pbp,x)
-
+plt.figure()
 plt.plot(x,y,c='#808080ff',label='Gramacy & Lee')
 plt.plot(x,py,c='#eb6934ff',label='Paddy')
 plt.xlabel('x',fontsize=18)
@@ -149,21 +153,49 @@ plt.xticks(fontsize=13)
 plt.title('Gramacy & Lee Interpolation\n (Paddy)',fontsize=22)
 plt.legend(loc='upper right',fontsize=12)
 plt.tight_layout()
-#plt.savefig(filename='glpaddy.svg',dpi=600)
+plt.savefig(fname='glpaddy.svg',dpi=600)
 plt.show()
 
 rbp = random_trig[np.argmin(random_trig[:,1]),0] # parameters for the best random trial
 ry = p_trig_inter(rbp,x)
-
+plt.figure()
 plt.plot(x,y,c='#808080ff',label='Gramacy & Lee')
 plt.plot(x,ry,c='#3a3a3aff',label='Random')
 plt.xlabel('x',fontsize=18)
 plt.ylabel('y',fontsize=18)
 plt.yticks(fontsize=13)
 plt.xticks(fontsize=13)
-plt.title('Gramacy & Lee Interpolation\n (Paddy)',fontsize=22)
+#plt.title('Gramacy & Lee Interpolation\n (Random)',fontsize=22)
 plt.legend(loc='upper right',fontsize=12)
 plt.tight_layout()
-#plt.savefig(filename='glpaddy.svg',dpi=600)
+plt.savefig(fname='glrand.svg',dpi=600)
 plt.show()
 
+
+def rmse(inputv):
+        ave = sum(inputv)/100
+        temp = []
+        for i in inputv:
+                temp.append((ave-i)**2)
+        return((sum(temp)/100)**.5)
+
+print("Max MSE paddy", max(pe))
+print("Min MSE paddy", min(pe))
+print("Avg MSE paddy", sum(pe)/100)
+print("RMSE MSE paddy", rmse(pe))
+print("Avg RT paddy", sum(pt)/100)
+print("RMSE RT paddy", rmse(pt))
+
+print("Max MSE hp", max(he))
+print("Min MSE hp", min(he))
+print("Avg MSE hp", sum(he)/100)
+print("RMSE MSE hp", rmse(he))
+print("Avg RT hp", sum(ht)/100)
+print("RMSE RT hp", rmse(ht))
+
+print("Max MSE rand", max(re))
+print("Min MSE rand", min(re))
+print("Avg MSE rand", sum(re)/100)
+print("RMSE MSE rand", rmse(re))
+print("Avg RT rand", sum(rt)/100)
+print("RMSE RT rand", rmse(rt))

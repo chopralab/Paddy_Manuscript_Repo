@@ -1,5 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.rcParams['axes.spines.right'] = False
+matplotlib.rcParams['axes.spines.top'] = False
+matplotlib.rcParams['axes.linewidth'] = 1.5
+matplotlib.use('Agg')
 import paddy
 
 
@@ -14,7 +19,7 @@ f = open("Hyperopt_Tversky.txt","r")
 
 fl = file_len(file_name)
 
-f = open("Hyperopt_Tversky.txt","r")
+f = open("hyperopt_vae_T_3500_timed.txt","r")
 hp_T = []
 hp_b = 0
 c = 0 
@@ -111,7 +116,7 @@ while c < 3500:
 
 
 file_name = 'Paddy_Custom_Pop.txt'
-f = open("Paddy_Custom_Pop.txt","r")
+f = open("Paddyt_Custom_Pop.txt","r")
 
 fl = file_len(file_name)
 
