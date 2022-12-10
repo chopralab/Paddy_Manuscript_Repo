@@ -3,14 +3,14 @@ import math
 import random
 sys.path.append('paddy/')
 import paddy
-import numpy as np 
+import numpy as np
 import time
 
 np.random.seed(5)
 rs=np.random.RandomState(5)
 random.seed(5)
 
-def function_2(input):
+def bimodal_eval_func(input):
     x=input[0,0]
     y=input[1,0]
     r1=((x-0.5)**2)+((y-0.5)**2)
@@ -19,10 +19,9 @@ def function_2(input):
     #global maximum at (0.6,0.1) with local at (0.5,0.5)
     return (result)
 
-i = ['generational', 'scaled', 50, 100, 5, False]
-
 y_param = paddy.PaddyParameter(param_range=[0,1,.01],param_type='continuous',limits=[0,1,.1], gaussian='scaled',normalization = False)
 x_param = paddy.PaddyParameter(param_range=[0,1,.01],param_type='continuous',limits=[0,1,.1], gaussian='scaled',normalization = False)
+
 class space(object):
         def __init__(self):
                 self.xp = x_param
@@ -33,7 +32,7 @@ c = 0
 g = 0
 r_list = []
 while c<100:
-    runner = paddy.PFARunner(space=test_space, eval_func=function_2,
+    runner = paddy.PFARunner(space=test_space, eval_func=bimodal_eval_func,
                             paddy_type='generational', rand_seed_number=50,
                             yt=50,Qmax=100,r=.02,iterations=5)
     s = time.time()

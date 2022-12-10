@@ -7,7 +7,7 @@ import numpy as np
 import math
 
 
-def function_2(x,y):
+def bimodal_func(x,y):
     r1=((x-0.5)**2)+((y-0.5)**2)
     r2=((x-0.6)**2)+((y-0.1)**2)
     result = (0.80*math.exp(-(r1)/(0.3**2))) + (0.88*math.exp(-(r2)/0.03**2))
@@ -25,11 +25,11 @@ c = 0
 for i in Z:
 	c2 = 0
 	for i2 in i:
-		Z[c][c2] = function_2(X[c][c2],Y[c][c2])
+		Z[c][c2] = bimodal_func(X[c][c2],Y[c][c2])
 		c2 += 1
 	c += 1
 
-h_list = np.load('Hyperopt_MinMax.npy')
+h_list = np.load('Hyperopt_MinMax.npy', allow_pickle=True)
 
 xs=[]
 ys=[]
@@ -39,7 +39,7 @@ for i in h_list:
 	ys.append(i[0]['y'])
 	zs.append(-i[1])
 
-p_list = np.load('Paddy_MinMax.npy')
+p_list = np.load('Paddy_MinMax.npy', allow_pickle=True)
 
 xs2=[]
 ys2=[]
