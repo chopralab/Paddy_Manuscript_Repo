@@ -1,0 +1,20 @@
+# anaconda base docker image
+FROM continuumio/miniconda3
+
+# Copy all files in the repo to the docker image
+COPY . . 
+
+# Change the working directory to the Requirements folder
+WORKDIR /Requirements
+
+# Creating the conda enviroment in the docker image
+RUN conda env create -f paddy.yml
+
+# Run the new conda enviroment in the docker image
+SHELL ["conda","run","-n","paddy","/bin/bash","-c"]
+
+# Change the working directory to the folder with the python script
+WORKDIR ../MinMax
+
+# Set the entrypoint to run the python script
+ENTRYPOINT ["conda","run","--no-capture-output","-n","paddy","python","Paddy_MinMax.py"]
