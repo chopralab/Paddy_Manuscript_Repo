@@ -1,6 +1,7 @@
-# import math
-# import numpy as np
-# import pika, sys, os
+#Instrument module for the instrument
+#Requires a csv file with parameter space
+#converts csv to df for the functions 
+
 
 import sys
 import numpy as np
@@ -31,39 +32,15 @@ def aos_input(df):
 #update csv
 #enzyme_conc, substrate_conc, incubation_time
 def assay_optimization_score(enzyme_conc,substrate_conc,incubation_time):
+    time.sleep(5)
     aos = 10000*min(max(0.52-0.495,0),0.025)/((25*enzyme_conc) + (5*substrate_conc) + (incubation_time))
     #z < 0.52 undesirable
-    #time.sleep(1)
-    aos_global[0] = aos
-    return aos
+    aos_global[0] = round(aos,2)
+    return round(aos,2)
 
-####moved to optimizer    
-# #step 3 update results with aos
-# def results_update():
-#     time.sleep(3)
-#     df['assay_optimization_score'][0] = float(aos_global[0])
-#     print('Updated Assay Optimization Score: \n', df.iloc[[0]])
-#     df.to_csv('reaction.csv',index=False)
-#     return float(aos_global[0])
 
 def run_all():
     aos_input(df)
     assay_optimization_score(aos_input)
-    # results_update()
 
 
-
-
-
-
-###older code
-# def assay_optimization_score(enzyme_conc, substrate_conc, incubation_time):
-#     aos = 10000*min(max(0.52-0.495,0),0.025)/((25*enzyme_conc) + (5*substrate_conc) + (incubation_time))
-#     #z < 0.52 undesirable
-#     return aos
-
-
-# def results_update_csv(aos):
-#     df = pd.read_csv('reaction.csv')
-
-# #Timer.sleep to setup a delay 
