@@ -1,17 +1,21 @@
+import os
+print('os_getcwd', os.getcwd())
+print('os.listdir', os.listdr())
+print(os.listdir())
 import torch
 import torch.nn as nn
 import math, random, sys
 import argparse
-sys.path.append('icml18-jtnn-master')
-from fast_jtnn import *
+# sys.path.append('../..')
+from icml18_jtnn_master.fast_jtnn import *
 import rdkit
-sys.path.append('paddy/')
-import paddy
+# sys.path.append('paddy/')
+import paddy.paddy
 from rdkit.Chem import AllChem as Chem
 import time
 import numpy as np
-sys.path.append('icml18-jtnn-master/bo')
-import sascorer
+# sys.path.append('icml18-jtnn-master/bo')
+from icml18_jtnn_master import sascorer
 import networkx as nx
 from rdkit.Chem import rdmolops
 from rdkit.Chem import MolFromSmiles, MolToSmiles
@@ -95,12 +99,12 @@ def run_func_1(input):
 		if bo < 0:
 			bos = 0.6**abs(bo)
 		if rb > 2:
-		    if rb<7:
-		        rbs = 0
-		    else:
-		        rbs = rb-5
+			if rb<7:
+				rbs = 0
+			else:
+				rbs = rb-5
 		else:
-		    rbs = 2-rb
+			rbs = 2-rb
 		print(str(output_b)+','+str(start-time.time())+', fitness:'+str((output_f*rdkit.Chem.Descriptors.FpDensityMorgan3(out_mol)**2)*(.1**rbs)*bos*output_f2*.1**cycle_count))
 		return (output_f*rdkit.Chem.Descriptors.FpDensityMorgan3(out_mol)**2)*(.1**rbs)*bos*output_f2*.1**cycle_count
 	else:

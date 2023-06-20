@@ -1,22 +1,30 @@
+import os
+print('os_getcwd', os.getcwd())
+print(os.listdir('.'))
 import torch
 import torch.nn as nn
 import math, random, sys
 import argparse
-sys.path.append('icml18-jtnn-master')
-from fast_jtnn import *
+# os.chdir('/home/sanjay/Paddy_Manuscript_Repo/icml18-jtnn-master')
+# sys.path.append('icml18-jtnn-master')
+# sys.path.append('../../icml18-jtnn-master')
+from icml18_jtnn_master.fast_jtnn import *
 import rdkit
-sys.path.append('paddy/')
-import paddy
+# os.chdir('/home/sanjay/Paddy_Manuscript_Repo/paddy')
+
+# sys.path.append('../../paddy/')
+import paddy.paddy
 from rdkit.Chem import AllChem as Chem
 import time
 import numpy as np
-sys.path.append('icml18-jtnn-master/bo')
-import sascorer
+# os.chdir('/home/sanjay/Paddy_Manuscript_Repo/icml18-jtnn-master')
+
+# sys.path.append('../../icml18-jtnn-master/bo')
+from icml18_jtnn_master import sascorer
 import networkx as nx
 from rdkit.Chem import rdmolops
 from rdkit.Chem import MolFromSmiles, MolToSmiles
 from rdkit.Chem import Descriptors
-import os
 
 random.seed(2)
 seed = 8
@@ -31,6 +39,7 @@ vocab = Vocab(vocab)
 
 model = JTNNVAE(vocab, 450, 56, 20, 3)
 model.load_state_dict(torch.load('icml18-jtnn-master/fast_molvae/moses-h450z56/model.iter-400000'))
+# model.load_state_dict(torch.load('../../icml18-jtnn-master/fast_molvae/moses-h450z56/model.iter-400000'))
 model = model.cuda()
 
 space = paddy.Default_Numerics.Polynomial(length=56, scope=1, gausian_type='scaled',normalization=True, limits=[-1,1])
@@ -38,7 +47,9 @@ space = paddy.Default_Numerics.Polynomial(length=56, scope=1, gausian_type='scal
 target_mol = Chem.MolFromSmiles('O=S(=O)(N)c1c(ccc(c1)Nc2nccc(n2)N(c4ccc3c(nn(c3C)C)c4)C)C')
 target_FP = Chem.GetMorganFingerprintAsBitVect(target_mol,2,nBits=2**23)
 
-
+with open('JTVAE_results.txt','w') as f:
+	f.write('RESULTS')
+	f.write('\n')
 
 def run_func_1(input):
 	input = input
@@ -57,6 +68,10 @@ def run_func_1(input):
 	out_FP = Chem.GetMorganFingerprintAsBitVect(out_mol,2,nBits=2**23)
 	output_f = Chem.DataStructs.TverskySimilarity(out_FP,target_FP,.5,.01)
 	score=(output_f)
+
+	with open('JTVAE_results.txt','a') as f:
+		f.write((str(output_b)+ ',' +str(start-time.time())+ ', fitness:' +str(score)))
+		f.write('\n')
 	print(str(output_b)+','+str(start-time.time())+', fitness:'+str(score))
 	return score
 
