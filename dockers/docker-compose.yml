@@ -1,0 +1,11 @@
+services:
+  test:
+    image: 'jtvae:v0.8'
+    # command: nvidia-smi
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 3
+              capabilities: [gpu]

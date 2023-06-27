@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  test:
+    image: 'jtvae:v0.8'
+    environment:
+      - VECTOR_INPUT=${VECTOR_INPUT}
+      - OUTPUT_PATH=${OUTPUT_PATH}
+    command: ["--Vector=${VECTOR_INPUT}", "--OUTPUT=${OUTPUT_PATH}"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 3
+              capabilities: [gpu]

@@ -1,0 +1,11 @@
+services:
+  test:
+    image: 'chopralab/aspire-linqx:mlp-1.5'
+    # command: nvidia-smi
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 3
+              capabilities: [gpu]

@@ -1,0 +1,18 @@
+# anaconda base docker image
+FROM continuumio/miniconda3
+
+# Copy all files in the repo to the docker image
+COPY . . 
+
+# Creating the conda enviroment in the docker image
+RUN conda env create -f /Requirements/MLP.yml
+
+# Run the new conda enviroment in the docker image
+SHELL ["conda","run","-n","MLP","/bin/bash","-c"]
+
+#see conda packages
+RUN conda list
+
+
+# Set the entrypoint to run the python script
+ENTRYPOINT ["conda","run","--live-stream","-n","MLP","python","/MLP_Hyperparameter_Optimization/Paddy_Solv.py"]
