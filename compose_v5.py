@@ -1,10 +1,39 @@
 import os
 import subprocess
 import warnings
+import docker 
+import docker
+import docker
 
-# # Filter out the specific warnings
-# warnings.filterwarnings("ignore", category=UserWarning, module="torch.nn._reduction")
-# warnings.filterwarnings("ignore", category=UserWarning, module="torch.nn.functional")
+# Define client and volume name
+client = docker.Client()
+volume_name = 'myvolume'
+
+# Create the volume
+client.create_volume(name=volume_name)
+
+# Define the volume configuration
+volume_config = {volume_name: {'bind': '/vol', 'mode': 'rw'}}
+output_path = '/vol/output.txt'
+
+# Run the container with the volume
+container = client.create_container(image='your_image_name', volumes=volume_config)
+client.start(container=container.get('Id'))
+
+# Copy files to the volume
+exec_command = 'cp /path/to/output.txt {}'.format(output_path)
+container.exec_run(cmd=exec_command)
+
+# Stop and remove the container
+client.stop(container=container.get('Id'))
+client.remove_container(container=container.get('Id'))
+
+# Cleanup the volume
+client.remove_volume(name=volume_name)
+
+
+
+
 
 
 # Get the Vector input from the user

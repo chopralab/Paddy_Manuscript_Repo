@@ -71,7 +71,7 @@ searcher = SNES(problem, stdev_init=0.5)
 logger = StdOutLogger(searcher)
 
 # After Evolve!
-searcher.run(100)
+searcher.run(1)
 
 # Find the best evaluation
 best_eval = min(evaluations)

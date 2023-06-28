@@ -1,10 +1,16 @@
 import torch
 import argparse
 import docker
+import numpy as np
 
 parser = argparse.ArgumentParser()
+
+random_numbers = np.random.uniform(-1, 1, size=56).round(2).tolist()
+random_vector = ", ".join(str(num) for num in random_numbers)
+print(random_vector)
+
 # Accept three command line arguments: lower bound, upper bound, and number of steps
-parser.add_argument('--Vector', type=str, default='0.4, 0.1, -0.8, -0.2, 0.9, -0.6, -0.5, -0.4, 0.9, -0.2, 0.5, -0.1, 0.3, -0.9, 0.7, 0.8, -0.1, -0.0, 1.0, 0.5, -0.3, -0.3, 0.4, 1.0, 0.7, 0.6, -0.2, 0.3, -0.2, -0.8, -0.2, 0.3, 0.1, -0.8, 0.9, 0.3, -0.4, -1.0, 0.1, -0.6, 0.5, 0.4, -0.2, -0.6, -1.0, -0.5, -0.4, 0.6, -0.2, -0.7, -0.7, -0.5, -0.7, 0.9')
+parser.add_argument('--Vector', type=str, default=str(random_vector))
 
 vector = parser.parse_args().Vector
 

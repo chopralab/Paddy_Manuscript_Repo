@@ -1,11 +1,15 @@
 import os
 import subprocess
 import warnings
+import docker
 
-# # Filter out the specific warnings
-# warnings.filterwarnings("ignore", category=UserWarning, module="torch.nn._reduction")
-# warnings.filterwarnings("ignore", category=UserWarning, module="torch.nn.functional")
 
+# Define client, pathing, and volume
+client = docker.from_env()
+volume_name = 'myvolume'
+client.volumes.create(name=volume_name)
+volume_config = {volume_name: {'bind': '/vol', 'mode': 'rw'}}
+output_path = '/vol/output.txt'
 
 # Get the Vector input from the user
 vector_input_path = raw_input("Enter the path to the Vector input file: ")
@@ -17,7 +21,7 @@ with open(vector_input_path, "r") as f:
 # Set the environment variables
 env_vars = {
     "VECTOR_INPUT": vector_input,
-    "OUTPUT_PATH": "JTVAE_test.txt"
+    "OUTPUT_PATH": output_path
 }
 
 # Write the environment variables to a .env file
@@ -42,7 +46,17 @@ else:
     print("Failed to start Docker Compose")
     print(stderr.decode())
 
+container = client.containers.run(
+    'alpine:latest',
+    command=f'cat {output_path}',
+    volumes=volume_config,
+    detach=True
+)
+
 # Remove the .env file
 os.remove(".env")
 
-#[1.0, -0.5, 0.3, 0.1, -0.1, -0.6, 1.0, 0.2, -0.2, -0.8, -0.3, -0.3, -0.3, -0.2, -1.0, -0.9, -0.9, -0.5, 0.1, 0.9, 0.6, 0.6, -0.7, 0.5, -0.3, -0.4, -0.7, -0.1, 0.0, 0.6, 0.8, -0.1, 0.1, 0.3, -0.7, 0.4, 0.2, 0.4, 0.7, -0.2, 0.5, 0.6, -0.5, -0.2, 0.3, 0.2, -0.9, -0.5, -0.7, -0.9, 0.1, 0.9, 0.9, -0.8, -0.1, -0.1]
+# Remove the Docker container
+subprocess.call(["docker-compose", "down"])
+
+

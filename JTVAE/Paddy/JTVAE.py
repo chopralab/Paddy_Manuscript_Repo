@@ -10,17 +10,18 @@ import rdkit
 from rdkit.Chem import AllChem as Chem
 from rdkit.Chem import MolFromSmiles, MolToSmiles, Descriptors, DataStructs
 import sys
-print('before append=', os.getcwd())
 # Go back two directories and append to the system path
 #os.chdir('../../')  This doesn't work?
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))  #this works?
-print('after append=', os.getcwd())
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from icml18_jtnn_master.fast_jtnn import *
 from icml18_jtnn_master.fast_jtnn import Vocab
 from icml18_jtnn_master.fast_jtnn import JTNNVAE
 import json
+import warnings
 
-
+# Filter out the specific warnings
+warnings.filterwarnings("ignore", category=UserWarning, module="torch.nn._reduction")
+warnings.filterwarnings("ignore", category=UserWarning, module="torch.nn.functional")
 
 # Setting random seeds and environment variables for reproducibility and GPU usage
 random.seed(2)
@@ -31,7 +32,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 logger = rdkit.RDLogger.logger()
 logger.setLevel(rdkit.RDLogger.CRITICAL)
 
-print('os_getcwd', os.getcwd())
+
 # Loading vocabulary from file and initializing Vocab object
 vocab_file_path = 'vocab.txt'
 vocab = [x.strip("\r\n ") for x in open(vocab_file_path)]
@@ -77,6 +78,8 @@ for idx, value in enumerate(Vector[28:]):
 
 decoded_smiles = model.decode(encoded_data_part1, encoded_data_part2, False)
 
+print('JTVAE has finished processing')
+print('Molecule selected')
 print(json.dumps({'smiles':decoded_smiles}, indent=2))
 
 with open(output, 'w') as f:

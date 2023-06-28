@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   test:
-    image: 'jtvae:v0.8'
+    container_name: JTVAE_container
+    image: 'jtvae:v1.0'
     environment:
       - VECTOR_INPUT=${VECTOR_INPUT}
       - OUTPUT_PATH=${OUTPUT_PATH}
@@ -14,3 +15,8 @@ services:
             - driver: nvidia
               count: 3
               capabilities: [gpu]
+    volumes:
+      - my_volume:/data
+
+volumes:
+  my_volume:
