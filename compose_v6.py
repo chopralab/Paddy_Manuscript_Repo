@@ -1,41 +1,36 @@
 import os
 import subprocess
 import warnings
-import docker 
+import docker
 
 # Define client and volume name
 client = docker.from_env()
 volume_name = 'myvolume'
 
 # Create the volume
-client.create_volume(name=volume_name)
+client.volumes.create(name=volume_name)
 
 # Define the volume configuration
 volume_config = {volume_name: {'bind': '/vol', 'mode': 'rw'}}
 output_path = '/vol/output.txt'
 
 # Run the container with the volume
-container = client.create_container(image='your_image_name', volumes=volume_config)
-client.start(container=container.get('Id'))
+container = client.containers.create(image='jtvae:v1.0', volumes=volume_config)
+container.start()
 
 # Copy files to the volume
-exec_command = 'cp /path/to/output.txt {}'.format(output_path)
+exec_command = f'cp /path/to/output.txt {output_path}'
 container.exec_run(cmd=exec_command)
 
 # Stop and remove the container
-client.stop(container=container.get('Id'))
-client.remove_container(container=container.get('Id'))
+container.stop()
+container.remove()
 
 # Cleanup the volume
-client.remove_volume(name=volume_name)
-
-
-
-
-
+client.volumes.get(volume_name).remove()
 
 # Get the Vector input from the user
-vector_input_path = raw_input("Enter the path to the Vector input file: ")
+vector_input_path = input("Enter the path to the Vector input file: ")
 
 # Read the Vector input file
 with open(vector_input_path, "r") as f:
@@ -50,7 +45,7 @@ env_vars = {
 # Write the environment variables to a .env file
 with open(".env", "w") as f:
     for key, value in env_vars.items():
-        f.write("{}={}\n".format(key, value))
+        f.write(f"{key}={value}\n")
 
 # Specify the command to run Docker Compose
 command = ["docker-compose", "up"]
@@ -72,4 +67,4 @@ else:
 # Remove the .env file
 os.remove(".env")
 
-#[1.0, -0.5, 0.3, 0.1, -0.1, -0.6, 1.0, 0.2, -0.2, -0.8, -0.3, -0.3, -0.3, -0.2, -1.0, -0.9, -0.9, -0.5, 0.1, 0.9, 0.6, 0.6, -0.7, 0.5, -0.3, -0.4, -0.7, -0.1, 0.0, 0.6, 0.8, -0.1, 0.1, 0.3, -0.7, 0.4, 0.2, 0.4, 0.7, -0.2, 0.5, 0.6, -0.5, -0.2, 0.3, 0.2, -0.9, -0.5, -0.7, -0.9, 0.1, 0.9, 0.9, -0.8, -0.1, -0.1]
+#vector_input = [1.0, -0.5, 0.3, 0.1, -0.1, -0.6, 1.0, 0.2, -0.2, -0.8, -0.3, -0.3, -0.3, -0.2, -1.0, -0.9, -0.9, -0.5, 0.1, 0.9, 0.6, 0.6, -0.7, 0.5, -0.3, -0.4, -0.7, -0.1, 0.0, 0.6, 0.8, -0.1, 0.1, 0.3, -0.7, 0.4, 0.2, 0.4, 0.7, -0.2, 0.5, 0.6, -0.5, -0.2, 0.3, 0.2, -0.9, -0.5, -0.7, -0.9, 0.1, 0.9, 0.9, -0.8, -0.1, -0.1]
